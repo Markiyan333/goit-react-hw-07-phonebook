@@ -1,17 +1,19 @@
-.input {
+.formInput {
     display: flex;
-    align-items: center;
     flex-direction: column;
-    margin: 5px auto;
-    width: auto;
+    margin: 0.5rem auto;
+    align-items: center;
+    font-size: large;
     text-align: left;
     padding: 1rem 10rem 1rem 1rem;
     border-radius: 10px;
+    box-shadow: 0 5px 15px rgb(0 0 0 / 35%);
 }
 
-.label {
+.filterLabel {
     display: flex;
     flex-direction: column;
-    margin-left: 20px;
-    padding: 0.5rem 11rem 0.5rem 1rem;
+    margin: 0.5rem auto 1rem;
+    align-items: center;
+    text-align: left;
 }

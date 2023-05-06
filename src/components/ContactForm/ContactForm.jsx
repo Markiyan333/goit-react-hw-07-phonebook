@@ -1,17 +1,18 @@
+import css from './ContactForm.module.css';
+
+import { useDispatch, useSelector } from 'react-redux';
+import { getContacts } from 'redux/selectors';
+import { addContact } from 'redux/operations';
 import { useState } from 'react';
 import { nanoid } from 'nanoid';
-import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from 'redux/contactsSlice';
-import { getContacts } from 'redux/selectors';
-import css from './ContactForm.module.css';
 
 export const ContactForm = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
-  const contacts = useSelector(getContacts);
+  const contacts = useSelector(getContacts); // витягуємо контакти зі store
   const dispatch = useDispatch();
 
-  const handleChange = event => {
+  const handleInputChange = event => {
     const { name, value } = event.target;
     switch (name) {
       case 'name':
@@ -25,30 +26,28 @@ export const ContactForm = () => {
     }
   };
 
-  const handleSubmit = event => {
+  const handleFormSubmit = event => {
     event.preventDefault();
-    const contact = {
-      id: nanoid(),
+    const newContact = {
+      id: nanoid(), 
       name,
       number,
     };
-
-    const nameExists = contacts.some(
+    const isNameExists = contacts.some(
       contact => contact.name.toLowerCase() === name.toLowerCase()
     );
 
-    if (nameExists) {
+    if (isNameExists) {
       alert(`${name} is already in contacts`);
     } else {
-      dispatch(addContact(contact));
+      dispatch(addContact(newContact)); // 
     }
-
-    setName('');
+    setName(''); 
     setNumber('');
   };
 
   return (
-    <form className={css.form} onSubmit={handleSubmit}>
+    <form className={css.form} onSubmit={handleFormSubmit}>
       <label className={css.formLabel}>Name </label>
       <input
         className={css.formInput}
@@ -58,7 +57,7 @@ export const ContactForm = () => {
         title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
         required
         placeholder="Name"
-        onChange={handleChange}
+        onChange={handleInputChange}
         value={name}
       />
       <label className={css.formLabel}>Number </label>
@@ -70,10 +69,10 @@ export const ContactForm = () => {
         title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
         required
         placeholder="111-11-11"
-        onChange={handleChange}
+        onChange={handleInputChange}
         value={number}
       />
-      <button className={css.formBtn} type="submit">
+      <button className={css.form_btn} type="submit">
         Add contact
       </button>
     </form>
