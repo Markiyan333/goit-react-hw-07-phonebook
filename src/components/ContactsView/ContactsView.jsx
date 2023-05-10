@@ -4,6 +4,8 @@ import { deleteContact, fetchContacts } from 'redux/operations';
 import { getContacts, getFilter } from 'redux/selectors';
 import { useEffect } from 'react';
 
+
+
 export const ContactsView = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(getContacts);
