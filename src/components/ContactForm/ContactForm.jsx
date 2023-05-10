@@ -9,7 +9,7 @@ import { nanoid } from 'nanoid';
 export const ContactForm = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
-  const contacts = useSelector(getContacts); // витягуємо контакти зі store
+  const contacts = useSelector(getContacts); 
   const dispatch = useDispatch();
 
   const handleInputChange = event => {

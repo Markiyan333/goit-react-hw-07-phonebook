@@ -5,8 +5,6 @@ import { getFilter } from 'redux/selectors';
 import { setFilter } from 'redux/filter';
 
 
-
-
 export const Filter = () => {
   const dispatch = useDispatch();
   const filter = useSelector(getFilter);
@@ -17,7 +15,7 @@ export const Filter = () => {
 
   return (
     <div>
-      <label className={css.filterLabel}>Find contacts by name:</label>
+      <label className={css.filterLabel}>Find contacts by Name </label>
       <input
         className={css.formInput}
         type="text"
